@@ -5,14 +5,32 @@
     "jest": true
   },
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "eslint-plugin-import-helpers",
   ],
-  "rules": {}
+  "rules": {
+    "camelcase": "off",
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "warn",
+    "@typescript-eslint/ban-types": "warn",
+    "no-console": "error",
+    "no-empty-function": "warn",
+
+  },
+  "settings": {
+    "import/resolver": {
+        "typescript": {}
+    }
+  }
 }
