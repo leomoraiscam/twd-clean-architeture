@@ -2,7 +2,7 @@ import UserRepository from "../ports/user-repository";
 import UserData from "../user-data";
 
 class InMemoryUserRepository implements UserRepository {
-  private repository: UserData[];
+  private repository: UserData[] = [];
 
   constructor(repository: UserData[]) {
     this.repository = repository;
@@ -28,8 +28,8 @@ class InMemoryUserRepository implements UserRepository {
     return null;
   }
 
-  findAllUsers(): Promise<UserData[]> {
-    throw new Error("err");
+  async findAllUsers(): Promise<UserData[]> {
+    return this.repository;
   }
 
   async exists(user: UserData): Promise<boolean> {
