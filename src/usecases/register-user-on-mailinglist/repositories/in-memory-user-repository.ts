@@ -8,11 +8,23 @@ class InMemoryUserRepository implements UserRepository {
     this.repository = repository;
   }
 
-  add(user: UserData): Promise<void> {
-    throw new Error("err");
+  async add(user: UserData): Promise<void> {
+    const exists = await this.exists(user);
+
+    if (!exists) {
+      this.repository.push(user);
+    }
   }
 
-  findUserByEmail(email: string): Promise<UserData> {
+  async findUserByEmail(email: string): Promise<UserData> {
+    const userFilter = this.repository.filter((user) => {
+      return user.email === email;
+    });
+
+    if (userFilter.length > 0) {
+      return userFilter[0];
+    }
+
     return null;
   }
 
@@ -20,8 +32,12 @@ class InMemoryUserRepository implements UserRepository {
     throw new Error("err");
   }
 
-  exists(user: UserData): Promise<boolean> {
-    throw new Error("err");
+  async exists(user: UserData): Promise<boolean> {
+    if ((await this.findUserByEmail(user.email)) === null) {
+      return false;
+    }
+
+    return true;
   }
 }
 

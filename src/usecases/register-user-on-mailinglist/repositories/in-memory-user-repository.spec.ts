@@ -11,4 +11,22 @@ describe("In memory user repository", () => {
 
     expect(user).toBeNull();
   });
+
+  it("should return user if it is found in the repository", async () => {
+    const users: UserData[] = [];
+
+    const name = "Norman Stewart";
+    const email = "cirebibi@idehatga.cd";
+
+    const userRepository = new InMemoryUserRepository(users);
+
+    await userRepository.add({
+      name,
+      email,
+    });
+
+    const user = await userRepository.findUserByEmail("cirebibi@idehatga.cd");
+
+    expect(user.name).toBe("Norman Stewart");
+  });
 });

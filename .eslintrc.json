@@ -17,7 +17,7 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "eslint-plugin-import-helpers",
+    "eslint-plugin-import-helpers"
   ],
   "rules": {
     "camelcase": "off",
@@ -26,7 +26,13 @@
     "@typescript-eslint/ban-types": "warn",
     "no-console": "error",
     "no-empty-function": "warn",
-
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
