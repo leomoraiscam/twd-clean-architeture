@@ -25,6 +25,12 @@ describe("Email validation", () => {
     expect(Email.validate(email)).toBeFalsy();
   });
 
+  it("should not accept domain part larger than 255 parts", () => {
+    const email = `local@${"d".repeat(128)}.${"d".repeat(128)}`;
+
+    expect(Email.validate(email)).toBeFalsy();
+  });
+
   it("should not accept local part larger than 64 parts", () => {
     const email = `${"l".repeat(65)}@mail.com`;
 
