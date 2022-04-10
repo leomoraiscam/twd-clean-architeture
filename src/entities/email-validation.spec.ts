@@ -19,6 +19,12 @@ describe("Email validation", () => {
     expect(Email.validate(email)).toBeTruthy();
   });
 
+  it("should not accept local part larger than 320 parts", () => {
+    const email = `${"l".repeat(64)}@${"d".repeat(128)}.${"d".repeat(128)}`;
+
+    expect(Email.validate(email)).toBeFalsy();
+  });
+
   it("should not accept local part larger than 64 parts", () => {
     const email = `${"l".repeat(65)}@mail.com`;
 
