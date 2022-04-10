@@ -7,14 +7,13 @@ describe("Email validation", () => {
     expect(Email.validate(email)).toBeFalsy();
   });
 
-  it("should not accept empty strings", () => {
-    const email = "";
-
-    expect(Email.validate(email)).toBeFalsy();
+  test("should accept valid email", () => {
+    const email = "any@mail.com";
+    expect(Email.validate(email)).toBeTruthy();
   });
 
-  it("should acept valid email", () => {
-    const email = "delziwif@hizuwvov.bg";
+  it("should accept valid email", () => {
+    const email = "any@email.com";
 
     expect(Email.validate(email)).toBeTruthy();
   });
@@ -51,6 +50,12 @@ describe("Email validation", () => {
 
   it("should not accept domain with a part larger than 63 chars", () => {
     const email = `any@${"d".repeat(64)}.com`;
+
+    expect(Email.validate(email)).toBeFalsy();
+  });
+
+  it("should not accept local part with a invalid char", () => {
+    const email = `any email@email.com`;
 
     expect(Email.validate(email)).toBeFalsy();
   });
