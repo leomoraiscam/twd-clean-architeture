@@ -7,7 +7,7 @@ describe("Email validation", () => {
     expect(Email.validate(email)).toBeFalsy();
   });
 
-  it("should not acept empty strings", () => {
+  it("should not accept empty strings", () => {
     const email = "";
 
     expect(Email.validate(email)).toBeFalsy();
