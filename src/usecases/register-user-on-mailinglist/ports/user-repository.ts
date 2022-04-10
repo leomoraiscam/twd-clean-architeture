@@ -1,4 +1,4 @@
-import UserData from "../user-data";
+import UserData from "../../../entities/user-data";
 
 interface UserRepository {
   findAllUsers(): Promise<UserData[]>;

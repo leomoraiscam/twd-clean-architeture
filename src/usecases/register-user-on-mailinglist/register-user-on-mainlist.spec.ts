@@ -1,5 +1,5 @@
 import InMemoryUserRepository from "./repositories/in-memory-user-repository";
-import UserData from "./user-data";
+import UserData from "../../entities/user-data";
 
 describe("Register user on main list use case", () => {
   it("should add user with complete data to mainling list", async () => {
