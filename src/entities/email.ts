@@ -4,6 +4,10 @@ class Email {
       return false;
     }
 
+    if (email.length > 320) {
+      return false;
+    }
+
     const [local, _] = email.split("@");
 
     if (local.length > 64) {
