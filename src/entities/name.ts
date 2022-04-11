@@ -2,7 +2,7 @@ import InvalidNameError from "./errors/invalid-name-error";
 import { Either, left, right } from "../shared/either";
 
 class Name {
-  private readonly value: string;
+  public readonly value: string;
 
   private constructor(name: string) {
     this.value = name;

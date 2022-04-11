@@ -3,7 +3,7 @@ import { Either, left, right } from "../shared/either";
 import InvalidEmailError from "./errors/invalid-email-error";
 
 class Email {
-  private readonly email: string;
+  public readonly email: string;
 
   private constructor(email: string) {
     this.email = email;
