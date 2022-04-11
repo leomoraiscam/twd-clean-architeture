@@ -1,4 +1,22 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Either, left, right } from "../shared/either";
+import InvalidEmailError from "./errors/invalid-email-error";
+
 class Email {
+  private readonly email: string;
+
+  constructor(email: string) {
+    this.email = email;
+  }
+
+  static create(email: string): Either<InvalidEmailError, Email> {
+    if (Email.validate(email)) {
+      return right(new Email(email));
+    }
+
+    return left(new InvalidEmailError());
+  }
+
   static validate(email: string) {
     if (!email) {
       return false;
