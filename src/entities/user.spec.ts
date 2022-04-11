@@ -2,6 +2,7 @@ import { left } from "../shared/either";
 import User from "./user";
 import InvalidEmailError from "./errors/invalid-email-error";
 import InvalidNameError from "./errors/invalid-name-error";
+import Name from "./name";
 
 describe("User domain class", () => {
   it("should not create user with invalid email address", () => {
@@ -35,5 +36,18 @@ describe("User domain class", () => {
     });
 
     expect(error).toEqual(left(new InvalidNameError()));
+  });
+
+  it("should create user with valid data", () => {
+    const name = "any_Name";
+    const email = "any@email.com";
+
+    const user: User = User.create({
+      name,
+      email,
+    }).value as User;
+
+    expect(user.name.value).toEqual(name);
+    expect(user.email.email).toEqual(email);
   });
 });
