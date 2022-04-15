@@ -1,10 +1,7 @@
-import InMemoryUserRepository from "./repositories/in-memory-user-repository";
-import UserData from "../../entities/user-data";
-import RegisterUserOnMainList from "./register-user-on-mainlist";
-import UserRepository from "./ports/user-repository";
-import { left } from "../../shared/either";
-import InvalidEmailError from "../../entities/errors/invalid-email-error";
-import InvalidNameError from "../../entities/errors/invalid-name-error";
+import InMemoryUserRepository from "../../../src/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
+import UserData from "../../../src/entities/user-data";
+import RegisterUserOnMainList from "../../../src/usecases/register-user-on-mailinglist/register-user-on-mainlist";
+import UserRepository from "../../../src/usecases/register-user-on-mailinglist/ports/user-repository";
 
 describe("Register user on main list use case", () => {
   it("should add user with complete data to mainling list", async () => {

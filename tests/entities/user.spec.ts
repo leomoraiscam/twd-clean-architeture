@@ -1,8 +1,4 @@
-import { left } from "../shared/either";
-import User from "./user";
-import InvalidEmailError from "./errors/invalid-email-error";
-import InvalidNameError from "./errors/invalid-name-error";
-import Name from "./name";
+import User from "../../src/entities/user";
 
 describe("User domain class", () => {
   it("should not create user with invalid email address", () => {
