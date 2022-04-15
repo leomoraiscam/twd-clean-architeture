@@ -39,15 +39,17 @@ describe("Register user on main list use case", () => {
     const name = "Rachel Klein";
     const invalidEmail = "invalid_email";
 
-    const response = await usecase.registerUserOnMainlist({
-      name,
-      email: invalidEmail,
-    });
+    const response = (
+      await usecase.registerUserOnMainlist({
+        name,
+        email: invalidEmail,
+      })
+    ).value as Error;
 
     const user = await userRepository.findUserByEmail("lutefde@kipijaw.fj");
 
     expect(user).toBeNull();
-    expect(response).toEqual(left(new InvalidEmailError()));
+    expect(response.name).toEqual("InvalidEmailError");
   });
 
   it("should not add user with invalid name to mailing list", async () => {
@@ -62,14 +64,16 @@ describe("Register user on main list use case", () => {
     const invalidName = "";
     const email = "vodevo@kuejo.gw";
 
-    const response = await usecase.registerUserOnMainlist({
-      name: invalidName,
-      email,
-    });
+    const response = (
+      await usecase.registerUserOnMainlist({
+        name: invalidName,
+        email,
+      })
+    ).value as Error;
 
     const user = await userRepository.findUserByEmail("vodevo@kuejo.gw");
 
     expect(user).toBeNull();
-    expect(response).toEqual(left(new InvalidNameError()));
+    expect(response.name).toEqual("InvalidNameError");
   });
 });
