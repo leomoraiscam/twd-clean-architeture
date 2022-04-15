@@ -1,7 +1,7 @@
-import InvalidNameError from "./errors/invalid-name-error";
-import { Either, left, right } from "../shared/either";
+import { InvalidNameError } from "./errors";
+import { Either, left, right } from "../shared";
 
-class Name {
+export class Name {
   public readonly value: string;
 
   private constructor(name: string) {

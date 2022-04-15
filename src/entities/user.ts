@@ -1,12 +1,9 @@
-/* eslint-disable consistent-return */
-import UserData from "./user-data";
-import { Either, left, right } from "../shared/either";
-import InvalidEmailError from "./errors/invalid-email-error";
-import Email from "./email";
-import InvalidNameError from "./errors/invalid-name-error";
-import Name from "./name";
+import { UserData } from "./user-data";
+import { Either, left, right } from "../shared";
+import { InvalidEmailError, InvalidNameError } from "./errors";
+import { Email, Name } from ".";
 
-class User {
+export class User {
   public readonly email: Email;
 
   public readonly name: Name;

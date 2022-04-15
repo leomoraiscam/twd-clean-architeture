@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { Either, left, right } from "../shared/either";
-import InvalidEmailError from "./errors/invalid-email-error";
+import { Either, left, right } from "../shared";
+import { InvalidEmailError } from "./errors";
 
-class Email {
+export class Email {
   public readonly email: string;
 
   private constructor(email: string) {
@@ -56,5 +55,3 @@ class Email {
     return true;
   }
 }
-
-export default Email;
