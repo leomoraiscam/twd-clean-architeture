@@ -1,7 +1,7 @@
-import { Email } from "../../src/entities";
+import { Email } from "@/entities";
 
 describe("Email validation", () => {
-  it("should not acept null strings", () => {
+  it("should not accept null strings", () => {
     const email = null;
 
     expect(Email.validate(email)).toBeFalsy();

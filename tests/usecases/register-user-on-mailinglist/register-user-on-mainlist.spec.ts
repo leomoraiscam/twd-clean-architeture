@@ -1,7 +1,7 @@
-import InMemoryUserRepository from "../../../src/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
-import { UserData } from "../../../src/entities";
-import RegisterUserOnMainList from "../../../src/usecases/register-user-on-mailinglist/register-user-on-mainlist";
-import { UserRepository } from "../../../src/usecases/register-user-on-mailinglist/ports";
+import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
+import { UserData } from "@/entities";
+import RegisterUserOnMainList from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
+import { UserRepository } from "@/usecases/register-user-on-mailinglist/ports";
 
 describe("Register user on main list use case", () => {
   it("should add user with complete data to mainling list", async () => {
