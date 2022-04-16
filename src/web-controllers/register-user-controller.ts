@@ -2,7 +2,7 @@
 import { UserData } from "@/entities";
 import RegisterUserOnMainList from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
 import { HttpRequest, HttpResponse } from "./ports";
-import { created } from "./util";
+import { created, badRequest } from "./util";
 
 // eslint-disable-next-line import/prefer-default-export
 export class RegisterUserController {
@@ -16,6 +16,10 @@ export class RegisterUserController {
     const userData: UserData = request.body;
 
     const response = await this.usecase.registerUserOnMainlist(userData);
+
+    if (response.isLeft()) {
+      return badRequest(response.value);
+    }
 
     if (!response.isLeft()) {
       return created(response.value);
