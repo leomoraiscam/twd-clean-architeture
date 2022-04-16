@@ -15,15 +15,15 @@ describe("Sign Up web controller", () => {
     usecase
   );
 
-  class ErrorThowingUseCaseStub implements UseCase {
+  class ErrorThrowingUseCaseStub implements UseCase {
     perform(request: any): Promise<void> {
       throw Error();
     }
   }
 
-  const errorThowingUseCaseStub: UseCase = new ErrorThowingUseCaseStub();
+  const errorThrowingUseCaseStub: UseCase = new ErrorThrowingUseCaseStub();
 
-  it("should return status code 201 when request contains valid user data", async () => {
+  it("should be able return status code 201 when request contains valid user data", async () => {
     const request: HttpRequest = {
       body: {
         name: "Larry Gonzales",
@@ -37,7 +37,7 @@ describe("Sign Up web controller", () => {
     expect(response.body).toEqual(request.body);
   });
 
-  it("should return status code 400 when request contains invalid name", async () => {
+  it("should be able return status code 400 when request contains invalid name", async () => {
     const requestWithInvalidName: HttpRequest = {
       body: {
         name: "L",
@@ -53,7 +53,7 @@ describe("Sign Up web controller", () => {
     expect(response.body).toBeInstanceOf(InvalidNameError);
   });
 
-  it("should return status code 400 when request contains invalid email", async () => {
+  it("should be able return status code 400 when request contains invalid email", async () => {
     const requestWithInvalidEmail: HttpRequest = {
       body: {
         name: "Eula Peters",
@@ -69,10 +69,10 @@ describe("Sign Up web controller", () => {
     expect(response.body).toBeInstanceOf(InvalidEmailError);
   });
 
-  it("should return status code 400 when request is missing user name", async () => {
+  it("should be able return status code 400 when request is missing user name", async () => {
     const requestWithoutName: HttpRequest = {
       body: {
-        email: "Maurice Page",
+        email: "ver@koken.sg",
       },
     };
 
@@ -82,7 +82,7 @@ describe("Sign Up web controller", () => {
     expect(response.body).toBeInstanceOf(MissingParamError);
   });
 
-  it("should return status code 400 when request is missing user email", async () => {
+  it("should be able return status code 400 when request is missing user email", async () => {
     const requestWithoutEmail: HttpRequest = {
       body: {
         name: "Eula Peters",
@@ -95,18 +95,20 @@ describe("Sign Up web controller", () => {
     expect(response.body).toBeInstanceOf(MissingParamError);
   });
 
-  it("should return status code 400 when request is missing user email and name", async () => {
-    const requestWithoutData: HttpRequest = {
+  it("should be able return status code 400 when request is missing user email and name", async () => {
+    const requestWithoutNameAndEmail: HttpRequest = {
       body: {},
     };
 
-    const response: HttpResponse = await controller.handle(requestWithoutData);
+    const response: HttpResponse = await controller.handle(
+      requestWithoutNameAndEmail
+    );
 
     expect(response.statusCode).toEqual(400);
     expect(response.body).toBeInstanceOf(MissingParamError);
   });
 
-  it("should return status code 500 when server raises", async () => {
+  it("should be able return status code 500 when server raises", async () => {
     const request: HttpRequest = {
       body: {
         name: "Larry Gonzales",
@@ -115,7 +117,7 @@ describe("Sign Up web controller", () => {
     };
 
     const controllerWithStub: RegisterUserController =
-      new RegisterUserController(errorThowingUseCaseStub);
+      new RegisterUserController(errorThrowingUseCaseStub);
     const response: HttpResponse = await controllerWithStub.handle(request);
 
     expect(response.statusCode).toEqual(500);
