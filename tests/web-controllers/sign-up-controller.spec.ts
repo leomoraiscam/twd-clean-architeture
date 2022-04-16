@@ -77,7 +77,7 @@ describe("Sign Up web controller", () => {
     expect(response.body).toBeInstanceOf(InvalidEmailError);
   });
 
-  it.skip("should return status code 400 when request is missing user name", async () => {
+  it("should return status code 400 when request is missing user name", async () => {
     const requestWithoutName: HttpRequest = {
       body: {
         email: "Maurice Page",
@@ -96,8 +96,45 @@ describe("Sign Up web controller", () => {
 
     expect(response.statusCode).toEqual(400);
     expect(response.body).toBeInstanceOf(MissingParamError);
-    expect(response.body as Error).toEqual(
-      "Missing parameter from request: name."
+  });
+
+  it("should return status code 400 when request is missing user email", async () => {
+    const requestWithoutEmail: HttpRequest = {
+      body: {
+        name: "Eula Peters",
+      },
+    };
+
+    const users: UserData[] = [];
+    const userRepository = new InMemoryUserRepository(users);
+    const usecase: RegisterUserOnMainList = new RegisterUserOnMainList(
+      userRepository
     );
+    const controller: RegisterUserController = new RegisterUserController(
+      usecase
+    );
+    const response: HttpResponse = await controller.handle(requestWithoutEmail);
+
+    expect(response.statusCode).toEqual(400);
+    expect(response.body).toBeInstanceOf(MissingParamError);
+  });
+
+  it("should return status code 400 when request is missing user email and name", async () => {
+    const requestWithoutData: HttpRequest = {
+      body: {},
+    };
+
+    const users: UserData[] = [];
+    const userRepository = new InMemoryUserRepository(users);
+    const usecase: RegisterUserOnMainList = new RegisterUserOnMainList(
+      userRepository
+    );
+    const controller: RegisterUserController = new RegisterUserController(
+      usecase
+    );
+    const response: HttpResponse = await controller.handle(requestWithoutData);
+
+    expect(response.statusCode).toEqual(400);
+    expect(response.body).toBeInstanceOf(MissingParamError);
   });
 });
