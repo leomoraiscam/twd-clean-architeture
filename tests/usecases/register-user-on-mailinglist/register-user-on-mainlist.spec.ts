@@ -1,6 +1,6 @@
 import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
 import { UserData } from "@/entities";
-import RegisterUserOnMainList from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
+import { RegisterUserOnMainList } from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
 import { UserRepository } from "@/usecases/register-user-on-mailinglist/ports";
 
 describe("Register user on main list use case", () => {
@@ -16,7 +16,7 @@ describe("Register user on main list use case", () => {
     const name = "Rachel Klein";
     const email = "lutefde@kipijaw.fj";
 
-    const response = await usecase.registerUserOnMainlist({ name, email });
+    const response = await usecase.perform({ name, email });
 
     const user = await userRepository.findUserByEmail("lutefde@kipijaw.fj");
 
@@ -37,7 +37,7 @@ describe("Register user on main list use case", () => {
     const invalidEmail = "invalid_email";
 
     const response = (
-      await usecase.registerUserOnMainlist({
+      await usecase.perform({
         name,
         email: invalidEmail,
       })
@@ -62,7 +62,7 @@ describe("Register user on main list use case", () => {
     const email = "vodevo@kuejo.gw";
 
     const response = (
-      await usecase.registerUserOnMainlist({
+      await usecase.perform({
         name: invalidName,
         email,
       })
