@@ -1,36 +1,40 @@
 /* eslint-disable consistent-return */
 import { UserData } from "@/entities";
-import RegisterUserOnMainList from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
+import { UseCase } from "@/usecases/ports";
 import { MissingParamError } from "./errors";
 import { HttpRequest, HttpResponse } from "./ports";
-import { created, badRequest } from "./util";
+import { created, badRequest, serverError } from "./util";
 
 // eslint-disable-next-line import/prefer-default-export
 export class RegisterUserController {
-  private readonly usecase: RegisterUserOnMainList;
+  private readonly usecase: UseCase;
 
-  constructor(usecase: RegisterUserOnMainList) {
+  constructor(usecase: UseCase) {
     this.usecase = usecase;
   }
 
   public async handle(request: HttpRequest): Promise<HttpResponse> {
-    if (!request.body.name || !request.body.email) {
-      let missingParam = !request.body.name ? "name" : "";
-      missingParam += !request.body.email ? "email" : "";
+    try {
+      if (!request.body.name || !request.body.email) {
+        let missingParam = !request.body.name ? "name" : "";
+        missingParam += !request.body.email ? "email" : "";
 
-      return badRequest(new MissingParamError(missingParam));
-    }
+        return badRequest(new MissingParamError(missingParam));
+      }
 
-    const userData: UserData = request.body;
+      const userData: UserData = request.body;
 
-    const response = await this.usecase.registerUserOnMainlist(userData);
+      const response = await this.usecase.perform(userData);
 
-    if (response.isLeft()) {
-      return badRequest(response.value);
-    }
+      if (response.isLeft()) {
+        return badRequest(response.value);
+      }
 
-    if (!response.isLeft()) {
-      return created(response.value);
+      if (!response.isLeft()) {
+        return created(response.value);
+      }
+    } catch (error) {
+      return serverError(error);
     }
   }
 }
