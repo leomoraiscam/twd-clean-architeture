@@ -1,16 +1,18 @@
 import { InvalidEmailError, InvalidNameError } from "@/entities/errors";
 import { User, UserData } from "@/entities";
 import { Either, left, right } from "@/shared";
+import { UseCase } from "@/usecases/ports";
 import { UserRepository } from "./ports";
 
-class RegisterUserOnMainList {
+// eslint-disable-next-line import/prefer-default-export
+export class RegisterUserOnMainList implements UseCase {
   private readonly userRepository: UserRepository;
 
   constructor(userRepository: UserRepository) {
     this.userRepository = userRepository;
   }
 
-  public async registerUserOnMainlist(
+  public async perform(
     request: UserData
   ): Promise<Either<InvalidEmailError | InvalidNameError, UserData>> {
     const userOrError: Either<InvalidEmailError | InvalidNameError, User> =
@@ -27,5 +29,3 @@ class RegisterUserOnMainList {
     return right(request);
   }
 }
-
-export default RegisterUserOnMainList;
