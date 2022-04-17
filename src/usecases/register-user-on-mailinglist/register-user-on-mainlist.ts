@@ -1,10 +1,10 @@
-import { InvalidEmailError, InvalidNameError } from "@/entities/errors";
 import { User, UserData } from "@/entities";
+import { InvalidEmailError, InvalidNameError } from "@/entities/errors";
 import { Either, left, right } from "@/shared";
 import { UseCase } from "@/usecases/ports";
+
 import { UserRepository } from "./ports";
 
-// eslint-disable-next-line import/prefer-default-export
 export class RegisterUserOnMainList implements UseCase {
   private readonly userRepository: UserRepository;
 

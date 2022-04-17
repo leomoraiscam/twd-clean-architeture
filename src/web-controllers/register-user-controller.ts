@@ -1,11 +1,10 @@
-/* eslint-disable consistent-return */
 import { UserData } from "@/entities";
 import { UseCase } from "@/usecases/ports";
+
 import { MissingParamError } from "./errors";
 import { HttpRequest, HttpResponse } from "./ports";
 import { created, badRequest, serverError } from "./util";
 
-// eslint-disable-next-line import/prefer-default-export
 export class RegisterUserController {
   private readonly usecase: UseCase;
 

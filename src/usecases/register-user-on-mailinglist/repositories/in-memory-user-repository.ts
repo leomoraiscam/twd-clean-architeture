@@ -1,4 +1,5 @@
 import { UserData } from "@/entities";
+
 import { UserRepository } from "../ports";
 
 class InMemoryUserRepository implements UserRepository {

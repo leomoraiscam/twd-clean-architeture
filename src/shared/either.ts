@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable max-classes-per-file */
 export class Left<L, A> {
   readonly value: L;
 
