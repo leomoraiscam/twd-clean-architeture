@@ -20,9 +20,10 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "camelcase": "off",
+    "import/no-unresolved": "error",
     "class-methods-use-this": "off",
-    "import/prefer-default-export": "warn",
     "@typescript-eslint/ban-types": "warn",
     "no-console": "error",
     "no-empty-function": "warn",
@@ -32,7 +33,20 @@
       {
         "ts": "never"
       }
-    ]
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", "/^@/", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-use-before-define": "warn",
+    "max-classes-per-file": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "consistent-return": "off"
   },
   "settings": {
     "import/resolver": {
