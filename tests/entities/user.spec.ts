@@ -1,7 +1,7 @@
 import { User } from "@/entities";
 
 describe("User domain class", () => {
-  it("should not create user with invalid email address", () => {
+  it("Should not be able create user with invalid email address", () => {
     const invalidEmail = "invalid_email";
 
     const error = User.create({
@@ -13,7 +13,7 @@ describe("User domain class", () => {
     expect(error.message).toEqual(`Invalid email:${invalidEmail}.`);
   });
 
-  it("should not create user with invalid name (too few characters)", () => {
+  it("Should not be able create user with invalid name (too few characters)", () => {
     const invalidName = "L      ";
 
     const error = User.create({
@@ -25,7 +25,7 @@ describe("User domain class", () => {
     expect(error.message).toEqual(`Invalid name:${invalidName}.`);
   });
 
-  it("should not create user with invalid name (too few characters)", () => {
+  it("Should not be able create user with invalid name (too few characters)", () => {
     const invalidName = "L      ".repeat(257);
 
     const error = User.create({
@@ -37,7 +37,7 @@ describe("User domain class", () => {
     expect(error.message).toEqual(`Invalid name:${invalidName}.`);
   });
 
-  it("should create user with valid data", () => {
+  it("Should be able create user with valid data", () => {
     const name = "any_Name";
     const email = "any@email.com";
 

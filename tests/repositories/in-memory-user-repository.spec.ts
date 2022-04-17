@@ -1,8 +1,8 @@
 import { UserData } from "@/entities";
 import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
 
-describe("In memory user repository", () => {
-  it("should return null if user in not found", async () => {
+describe("In-memory user repository", () => {
+  it("Should be able return null if user in not found", async () => {
     const users: UserData[] = [];
 
     const userRepository = new InMemoryUserRepository(users);
@@ -12,7 +12,7 @@ describe("In memory user repository", () => {
     expect(user).toBeNull();
   });
 
-  it("should return user if it is found in the repository", async () => {
+  it("Should be able return user if it is found in the repository", async () => {
     const users: UserData[] = [];
 
     const name = "Norman Stewart";
@@ -30,7 +30,7 @@ describe("In memory user repository", () => {
     expect(user.name).toBe("Norman Stewart");
   });
 
-  it("should return all users in the repository", async () => {
+  it("Should be able return all users in the repository", async () => {
     const users: UserData[] = [
       {
         name: "Tommy Floyd",

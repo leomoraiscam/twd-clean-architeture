@@ -1,10 +1,10 @@
-import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
 import { UserData } from "@/entities";
-import { RegisterUserOnMainList } from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
 import { UserRepository } from "@/usecases/register-user-on-mailinglist/ports";
+import { RegisterUserOnMainList } from "@/usecases/register-user-on-mailinglist/register-user-on-mainlist";
+import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
 
 describe("Register user on main list use case", () => {
-  it("should add user with complete data to mainling list", async () => {
+  it("Should be able add user with complete data to main list", async () => {
     const users: UserData[] = [];
 
     const userRepository: UserRepository = new InMemoryUserRepository(users);
@@ -24,7 +24,7 @@ describe("Register user on main list use case", () => {
     expect(response.value.name).toBe("Rachel Klein");
   });
 
-  it("should not add user with invalid email to mailing list", async () => {
+  it("Should not be able add user with invalid email to mailing list", async () => {
     const users: UserData[] = [];
 
     const userRepository: UserRepository = new InMemoryUserRepository(users);
@@ -49,7 +49,7 @@ describe("Register user on main list use case", () => {
     expect(response.name).toEqual("InvalidEmailError");
   });
 
-  it("should not add user with invalid name to mailing list", async () => {
+  it("Should not be able add user with invalid name to mailing list", async () => {
     const users: UserData[] = [];
 
     const userRepository: UserRepository = new InMemoryUserRepository(users);
