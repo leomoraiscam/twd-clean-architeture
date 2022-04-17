@@ -1,6 +1,6 @@
-import { UserData } from "@/entities";
+import { UserData } from '@/entities';
 
-import { UserRepository } from "../ports";
+import { UserRepository } from '../ports';
 
 class InMemoryUserRepository implements UserRepository {
   private repository: UserData[] = [];

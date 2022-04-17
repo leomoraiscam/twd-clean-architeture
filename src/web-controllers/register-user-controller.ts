@@ -1,9 +1,9 @@
-import { UserData } from "@/entities";
-import { UseCase } from "@/usecases/ports";
+import { UserData } from '@/entities';
+import { UseCase } from '@/usecases/ports';
 
-import { MissingParamError } from "./errors";
-import { HttpRequest, HttpResponse } from "./ports";
-import { created, badRequest, serverError } from "./util";
+import { MissingParamError } from './errors';
+import { HttpRequest, HttpResponse } from './ports';
+import { created, badRequest, serverError } from './util';
 
 export class RegisterUserController {
   private readonly usecase: UseCase;
@@ -15,8 +15,8 @@ export class RegisterUserController {
   public async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       if (!request.body.name || !request.body.email) {
-        let missingParam = !request.body.name ? "name" : "";
-        missingParam += !request.body.email ? "email" : "";
+        let missingParam = !request.body.name ? 'name' : '';
+        missingParam += !request.body.email ? 'email' : '';
 
         return badRequest(new MissingParamError(missingParam));
       }

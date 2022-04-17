@@ -1,22 +1,22 @@
-import { UserData } from "@/entities";
-import InMemoryUserRepository from "@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository";
+import { UserData } from '@/entities';
+import InMemoryUserRepository from '@/usecases/register-user-on-mailinglist/repositories/in-memory-user-repository';
 
-describe("In-memory user repository", () => {
-  it("Should be able return null if user in not found", async () => {
+describe('In-memory user repository', () => {
+  it('Should be able return null if user in not found', async () => {
     const users: UserData[] = [];
 
     const userRepository = new InMemoryUserRepository(users);
 
-    const user = await userRepository.findUserByEmail("vakjev@jal.gq");
+    const user = await userRepository.findUserByEmail('vakjev@jal.gq');
 
     expect(user).toBeNull();
   });
 
-  it("Should be able return user if it is found in the repository", async () => {
+  it('Should be able return user if it is found in the repository', async () => {
     const users: UserData[] = [];
 
-    const name = "Norman Stewart";
-    const email = "cirebibi@idehatga.cd";
+    const name = 'Norman Stewart';
+    const email = 'cirebibi@idehatga.cd';
 
     const userRepository = new InMemoryUserRepository(users);
 
@@ -25,20 +25,20 @@ describe("In-memory user repository", () => {
       email,
     });
 
-    const user = await userRepository.findUserByEmail("cirebibi@idehatga.cd");
+    const user = await userRepository.findUserByEmail('cirebibi@idehatga.cd');
 
-    expect(user.name).toBe("Norman Stewart");
+    expect(user.name).toBe('Norman Stewart');
   });
 
-  it("Should be able return all users in the repository", async () => {
+  it('Should be able return all users in the repository', async () => {
     const users: UserData[] = [
       {
-        name: "Tommy Floyd",
-        email: "rilezaba@gurulnug.dj",
+        name: 'Tommy Floyd',
+        email: 'rilezaba@gurulnug.dj',
       },
       {
-        name: "Jordan Lawrence",
-        email: "naf@octavap.bv",
+        name: 'Jordan Lawrence',
+        email: 'naf@octavap.bv',
       },
     ];
 

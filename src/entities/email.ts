@@ -1,5 +1,5 @@
-import { InvalidEmailError } from "@/entities/errors";
-import { Either, left, right } from "@/shared";
+import { InvalidEmailError } from '@/entities/errors';
+import { Either, left, right } from '@/shared';
 
 export class Email {
   public readonly email: string;
@@ -32,7 +32,7 @@ export class Email {
       return false;
     }
 
-    const [local, domain] = email.split("@");
+    const [local, domain] = email.split('@');
 
     if (local.length > 64 || local.length === 0) {
       return false;
@@ -42,7 +42,7 @@ export class Email {
       return false;
     }
 
-    const domainParts = domain.split(".");
+    const domainParts = domain.split('.');
 
     if (
       domainParts.some(function (part) {

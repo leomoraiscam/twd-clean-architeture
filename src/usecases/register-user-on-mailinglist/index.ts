@@ -1,1 +1,1 @@
-export * from "./register-user-on-mainlist";
+export * from './register-user-on-mainlist';
