@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
-    "build":"rimraf dist && tsc -p tsconfig-build.json",
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test-verbose": "jest --passWithNoTests --runInBand",
     "test-unit": "npm test -- -c jest-unit-config.js",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@shelf/jest-mongodb": "^2.2.1",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
