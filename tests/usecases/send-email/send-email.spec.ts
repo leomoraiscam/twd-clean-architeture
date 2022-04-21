@@ -1,4 +1,5 @@
-import { Either, Left, Right, right } from '@/shared';
+/* eslint-disable max-classes-per-file */
+import { Either, left, Left, Right, right } from '@/shared';
 import { MailServiceError } from '@/usecases/errors/mail-service-error';
 import { EmailOptions, EmailService } from '@/usecases/send-email/ports';
 import { SendEmail } from '@/usecases/send-email/send-email';
@@ -39,6 +40,14 @@ class MailServiceStub implements EmailService {
   }
 }
 
+class MailServiceErrorStub implements EmailService {
+  async send(
+    emailOptions: EmailOptions
+  ): Promise<Either<MailServiceError, EmailOptions>> {
+    return left(new MailServiceError());
+  }
+}
+
 describe('Send email to user', () => {
   it('Should email user with valid name and email address', async () => {
     const mailServiceStub = new MailServiceStub();
@@ -57,6 +66,21 @@ describe('Send email to user', () => {
     const mailServiceStub = new MailServiceStub();
 
     const usecase = new SendEmail(mailOptions, mailServiceStub);
+
+    const invalidEmail = 'beow.sj';
+
+    const response = await usecase.perform({
+      name: toName,
+      email: invalidEmail,
+    });
+
+    expect(response).toBeInstanceOf(Left);
+  });
+
+  it('Should return error when email service fails', async () => {
+    const mailServiceErrorStub = new MailServiceErrorStub();
+
+    const usecase = new SendEmail(mailOptions, mailServiceErrorStub);
 
     const invalidEmail = 'beow.sj';
 
