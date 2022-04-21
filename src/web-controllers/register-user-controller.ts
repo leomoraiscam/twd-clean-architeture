@@ -29,9 +29,7 @@ export class RegisterUserController {
         return badRequest(response.value);
       }
 
-      if (!response.isLeft()) {
-        return created(response.value);
-      }
+      return created(response.value);
     } catch (error) {
       return serverError(error);
     }
